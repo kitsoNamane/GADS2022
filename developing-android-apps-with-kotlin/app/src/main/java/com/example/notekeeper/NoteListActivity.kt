@@ -48,9 +48,15 @@ class NoteListActivity : AppCompatActivity() {
 
         noteListView.setOnItemClickListener { parent, view, position, id ->
             val activityIntent = Intent(this, MainActivity::class.java)
-            activityIntent.putExtra(EXTRA_NOTE_POSITION, position)
+            activityIntent.putExtra(NOTE_POSITION, position)
             startActivity(activityIntent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val noteListView = findViewById<ListView>(R.id.note_list)
+        (noteListView.adapter as ArrayAdapter<NoteInfo>).notifyDataSetChanged()
     }
 
     override fun onSupportNavigateUp(): Boolean {

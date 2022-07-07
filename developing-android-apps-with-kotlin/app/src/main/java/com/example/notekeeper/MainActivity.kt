@@ -37,9 +37,17 @@ class MainActivity : AppCompatActivity() {
 
         val dropdownMenu = findViewById<Spinner>(R.id.course_spinner)
         dropdownMenu.adapter = courseInfoAdapter
-        notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
-        if(notePosition != POSITION_NOT_SET) {
+        notePosition =
+            savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET) ?: intent.getIntExtra(
+                NOTE_POSITION,
+                POSITION_NOT_SET
+            )
+
+        if (notePosition != POSITION_NOT_SET) {
             displayNote()
+        } else {
+            DataManager.notes.add(NoteInfo())
+            notePosition = DataManager.notes.lastIndex
         }
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -83,9 +91,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        if(notePosition >= DataManager.notes.lastIndex) {
+        if (notePosition >= DataManager.notes.lastIndex) {
             val menuItem = menu?.findItem(R.id.action_next)
-            if(menuItem != null) {
+            if (menuItem != null) {
                 menuItem.icon = getDrawable(R.drawable.ic_baseline_block_24)
                 menuItem.isEnabled = false
             }
@@ -95,10 +103,26 @@ class MainActivity : AppCompatActivity() {
         return super.onPrepareOptionsMenu(menu)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(NOTE_POSITION, notePosition)
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        saveNote()
+    }
+
+    private fun saveNote() {
+        val note = DataManager.notes[notePosition]
+        note.noteTitle = findViewById<EditText>(R.id.note_title).text.toString()
+        note.noteText = findViewById<EditText>(R.id.note_text).text.toString()
+        note.course = findViewById<Spinner>(R.id.course_spinner).selectedItem as CourseInfo
     }
 }
