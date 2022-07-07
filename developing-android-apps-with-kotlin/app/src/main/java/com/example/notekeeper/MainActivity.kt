@@ -1,7 +1,6 @@
 package com.example.notekeeper
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -9,7 +8,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.example.notekeeper.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,18 +25,16 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        val dataManager = DataManager()
+        val courseInfoAdapter = ArrayAdapter<CourseInfo>(this, android.R.layout.simple_spinner_item, dataManager.courses.values.toList())
+        courseInfoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        val dropdownMenu = findViewById<Spinner>(R.id.course_spinner)
+        dropdownMenu.adapter = courseInfoAdapter
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            val textView = findViewById<TextView>(R.id.textview_first)
-            val originalValue = textView.text.toString().toInt()
-            val newValue = originalValue * 2
-            textView.text = newValue.toString()
-            Snackbar.make(view, "Value $originalValue change to $newValue", Snackbar.LENGTH_LONG)
-                .show()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
