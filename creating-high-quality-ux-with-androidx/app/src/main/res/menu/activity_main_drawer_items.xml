@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/fragment_city_list"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/nav_drawer_home" />
+        <item
+            android:id="@+id/fragment_favorite_cities"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:title="@string/nav_drawer_favorites" />
+    </group>
+</menu>

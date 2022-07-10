@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/cityListFragment">
+    app:startDestination="@id/fragment_city_list">
 
     <fragment
-        android:id="@+id/cityListFragment"
+        android:id="@+id/fragment_city_list"
         android:name="com.example.globotour.CityListFragment"
         android:label="Top Cities"
         tools:layout="@layout/fragment_city_list" />
     <fragment
-        android:id="@+id/favoriteCitiesFragment"
+        android:id="@+id/fragment_favorite_cities"
         android:name="com.example.globotour.FavoriteCitiesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite_cities" />
