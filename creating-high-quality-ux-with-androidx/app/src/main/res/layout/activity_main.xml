@@ -5,29 +5,14 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:openDrawer="start"
     android:fitsSystemWindows="true">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/app_bar_main"
+        layout="@layout/app_bar_main"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-        <com.google.android.material.appbar.AppBarLayout
-            style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/material_toolbar"
-                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:elevation="4dp"/>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <include layout="@layout/content_main" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:layout_width="match_parent" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -35,7 +20,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/activity_main_drawer_items"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.google.android.material.navigation.NavigationView>
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 </androidx.drawerlayout.widget.DrawerLayout>

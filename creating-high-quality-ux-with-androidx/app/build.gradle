@@ -1,15 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
     compileSdk 32
-
-    buildFeatures {
-        viewBinding = true
-    }
 
     defaultConfig {
         applicationId "com.example.globotour"
@@ -33,6 +28,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 

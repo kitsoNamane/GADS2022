@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.globotour.databinding.FragmentCityListBinding
+import com.example.globotour.databinding.FragmentFavoriteCitiesBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -13,7 +14,7 @@ import com.example.globotour.databinding.FragmentCityListBinding
  * create an instance of this fragment.
  */
 class FavoriteCitiesFragment : Fragment() {
-    private lateinit var binding: FragmentCityListBinding
+    private lateinit var binding: FragmentFavoriteCitiesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,7 @@ class FavoriteCitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCityListBinding.inflate(inflater, container, false)
+        binding = FragmentFavoriteCitiesBinding.inflate(inflater, container, false)
         return binding.root
     }
 }
