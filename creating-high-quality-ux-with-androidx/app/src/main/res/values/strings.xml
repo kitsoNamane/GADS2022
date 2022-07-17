@@ -5,4 +5,8 @@
     <string name="drawer_header_img">Navigation Drawer Background image</string>
     <string name="nav_drawer_home">Home</string>
     <string name="nav_drawer_favorites">Favorites</string>
+    <string name="city_list">City list</string>
+    <string name="city_image">City image</string>
+    <string name="delete_city">Delete city</string>
+    <string name="favourite_a_city">Favourite a city</string>
 </resources>
